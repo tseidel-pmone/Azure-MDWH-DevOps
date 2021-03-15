@@ -57,7 +57,7 @@ adbWorkspaceSkuTier="standard"
 echo "Validating parameters for Azure Databricks..."
 if ! az deployment group validate \
     --resource-group "$AZURE_RESOURCE_GROUP_NAME" \
-    --template-file ./databricks/workspace.template.json \
+    --template-file ./databricks/workspace.template.bicep \
     --parameters \
         disablePublicIp="$disablePublicIp" \
         adbWorkspaceLocation="$adbWorkspaceLocation" \
@@ -82,7 +82,7 @@ keyVaultSkuTier="Standard"
 echo "Validating parameters for Azure Key Vault..."
 if ! az deployment group validate \
     --resource-group "$AZURE_RESOURCE_GROUP_NAME" \
-    --template-file ./keyvault/keyvault.template.json \
+    --template-file ./keyvault/keyvault.template.bicep \
     --parameters \
         keyVaultName="$keyVaultName" \
         keyVaultLocation="$keyVaultLocation" \
@@ -108,7 +108,7 @@ encryptionEnabled="true"
 echo "Validating parameters for Azure Storage Account..."
 if ! az deployment group validate \
     --resource-group "$AZURE_RESOURCE_GROUP_NAME" \
-    --template-file ./storageaccount/storageaccount.template.json \
+    --template-file ./storageaccount/storageaccount.template.bicep \
     --parameters \
         storageAccountName="$storageAccountName" \
         storageAccountSku="$storageAccountSku" \
@@ -126,7 +126,7 @@ fi
 echo "Deploying Azure Databricks Workspace..."
 adbws_arm_output=$(az deployment group create \
     --resource-group "$AZURE_RESOURCE_GROUP_NAME" \
-    --template-file ./databricks/workspace.template.json \
+    --template-file ./databricks/workspace.template.bicep \
     --parameters \
         disablePublicIp="$disablePublicIp" \
         adbWorkspaceLocation="$adbWorkspaceLocation" \
@@ -143,7 +143,7 @@ fi
 echo "Deploying Azure Key Vault..."
 akv_arm_output=$(az deployment group create \
     --resource-group "$AZURE_RESOURCE_GROUP_NAME" \
-    --template-file ./keyvault/keyvault.template.json \
+    --template-file ./keyvault/keyvault.template.bicep \
     --parameters \
         keyVaultName="$keyVaultName" \
         keyVaultLocation="$keyVaultLocation" \
@@ -162,7 +162,7 @@ fi
 echo "Deploying Azure Storage Account..."
 if ! az deployment group create \
     --resource-group "$AZURE_RESOURCE_GROUP_NAME" \
-    --template-file ./storageaccount/storageaccount.template.json \
+    --template-file ./storageaccount/storageaccount.template.bicep \
     --parameters \
         storageAccountName="$storageAccountName" \
         storageAccountSku="$storageAccountSku" \
