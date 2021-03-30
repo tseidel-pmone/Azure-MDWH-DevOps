@@ -196,7 +196,6 @@ The following steps can be performed to validate the correct deployment of this 
    4. View deployment logs in the Azure resource group
    ![alt text](../Common_Assets/Images/IAC_Deployment_Logs.png "Logo Title Text 1")
 
-
 ### 3.5. (optional) Deploy to Azure Directly
 
 1. Databricks Workspaces
@@ -210,6 +209,10 @@ The following steps can be performed to validate the correct deployment of this 
 1. Storage Account
 
     [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fmodern-data-warehouse-dataops%2Fsingle-tech%2Fdatabricks%2Fsingle_tech_samples%2Fdatabricks%2Fsample1_basic_azure_databricks_environment%2Fstorageaccount%2Fstorageaccount.template.json)
+
+1. Config Script
+
+    [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fmodern-data-warehouse-dataops%2Fsingle-tech%2Fdatabricks_209-deploy-to-azure-batch%2Fsingle_tech_samples%2Fdatabricks%2Fsample1_basic_azure_databricks_environment%2FconfigTemplate%2FconfigTemplate.json)
 
 ### 3.6. Clean-up
 
