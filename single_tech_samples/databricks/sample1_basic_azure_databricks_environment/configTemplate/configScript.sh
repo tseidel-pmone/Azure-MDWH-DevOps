@@ -16,8 +16,8 @@ storageKeys=$(az storage account keys list --resource-group "$AZURE_RESOURCE_GRO
 storageAccountKey1=$(echo "$storageKeys" | jq -r '.[0].value')
 storageAccountKey2=$(echo "$storageKeys" | jq -r '.[1].value')
 
-# objectId="$(az ad signed-in-user show --query "objectId" --output tsv)"
-az keyvault set-policy --name juan10akv01 --spn "$DEPLOY_PRINCIPAL_ID" --secret-permissions get list set
+appId="$(az ad sp show --id "$DEPLOY_PRINCIPAL_ID" --query "appId" --output tsv)"
+az keyvault set-policy --name juan10akv01 --spn "$appId" --secret-permissions get list set
 
 echo "Storing keys in key vault"
 az keyvault secret set -n "StorageAccountKey1" --vault-name "$keyVaultName" --value "$storageAccountKey1" --output none
