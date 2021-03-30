@@ -25,8 +25,6 @@ az keyvault secret set -n "StorageAccountKey1" --vault-name "$keyVaultName" --va
 az keyvault secret set -n "StorageAccountKey2" --vault-name "$keyVaultName" --value "$storageAccountKey2" --output none
 echo "Successfully stored secrets StorageAccountKey1 and StorageAccountKey2"
 
-az keyvault delete-policy --name "$keyVaultName" --spn "$appId"
-
 az extension add --name databricks --yes --output none
 # Create ADB secret scope backed by Key Vault
 adbGlobalToken=$(az account get-access-token --resource 2ff814a6-3304-4ab8-85cb-cd0e6f879c1d --output json | jq -r .accessToken)
@@ -54,5 +52,9 @@ createSecretScopePayload="{
   },
   \"initial_manage_principal\": \"users\"
 }"
-echo "$createSecretScopePayload" | curl -sS -X POST -H "$authHeader" -H "$adbSPMgmtToken" -H "$adbResourceId" \
-    --data-binary "@-" "https://${adbWorkspaceUrl}/api/2.0/secrets/scopes/create"
+response=$(echo "$createSecretScopePayload" | curl -sS -X POST -H "$authHeader" -H "$adbSPMgmtToken" -H "$adbResourceId" \
+    --data-binary "@-" "https://${adbWorkspaceUrl}/api/2.0/secrets/scopes/create")
+
+echo $response
+
+az keyvault delete-policy --name "$keyVaultName" --spn "$appId"
