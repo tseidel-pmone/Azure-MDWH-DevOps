@@ -21,7 +21,8 @@
     - [3.2. Setup and deployment](#32-setup-and-deployment)
     - [3.3. Deployed Resources](#33-deployed-resources)
     - [3.4. Deployment validation](#34-deployment-validation)
-    - [3.5. Clean-up](#35-clean-up)
+    - [3.5. (optional) Deploy to Azure Directly](#35-optional-deploy-to-azure-directly)
+    - [3.6. Clean-up](#36-clean-up)
 
 ## 1. Solution Overview
 
@@ -195,7 +196,22 @@ The following steps can be performed to validate the correct deployment of this 
    4. View deployment logs in the Azure resource group
    ![alt text](../Common_Assets/Images/IAC_Deployment_Logs.png "Logo Title Text 1")
 
-### 3.5. Clean-up
+
+### 3.5. (optional) Deploy to Azure Directly
+
+1. Databricks Workspaces
+  
+    [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fmodern-data-warehouse-dataops%2Fsingle-tech%2Fdatabricks%2Fsingle_tech_samples%2Fdatabricks%2Fsample1_basic_azure_databricks_environment%2Fdatabricks%2Fworkspace.template.json)
+
+1. Key Vault
+
+    [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fmodern-data-warehouse-dataops%2Fsingle-tech%2Fdatabricks%2Fsingle_tech_samples%2Fdatabricks%2Fsample1_basic_azure_databricks_environment%2Fkeyvault%2Fkeyvault.template.json)
+
+1. Storage Account
+
+    [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fmodern-data-warehouse-dataops%2Fsingle-tech%2Fdatabricks%2Fsingle_tech_samples%2Fdatabricks%2Fsample1_basic_azure_databricks_environment%2Fstorageaccount%2Fstorageaccount.template.json)
+
+### 3.6. Clean-up
 
 Please follow the below steps to clean up your environment :
 
