@@ -58,7 +58,7 @@
       },
       "properties": {
         "azCliVersion": "2.20.0",
-        "timeout": "PT5M",
+        "timeout": "PT30M",
         "primaryScriptUri": "https://raw.githubusercontent.com/Azure-Samples/modern-data-warehouse-dataops/single-tech/databricks_209-deploy-to-azure-batch/single_tech_samples/databricks/sample1_basic_azure_databricks_environment/configTemplate/configScript.sh",
         "cleanupPreference": "OnSuccess",
         "retentionInterval": "PT1H",
