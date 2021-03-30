@@ -17,12 +17,14 @@ storageAccountKey1=$(echo "$storageKeys" | jq -r '.[0].value')
 storageAccountKey2=$(echo "$storageKeys" | jq -r '.[1].value')
 
 appId="$(az ad sp show --id "$DEPLOY_PRINCIPAL_ID" --query "appId" --output tsv)"
-az keyvault set-policy --name juan10akv01 --spn "$appId" --secret-permissions get list set
+az keyvault set-policy --name "$keyVaultName" --spn "$appId" --secret-permissions get list set
 
 echo "Storing keys in key vault"
 az keyvault secret set -n "StorageAccountKey1" --vault-name "$keyVaultName" --value "$storageAccountKey1" --output none
 az keyvault secret set -n "StorageAccountKey2" --vault-name "$keyVaultName" --value "$storageAccountKey2" --output none
 echo "Successfully stored secrets StorageAccountKey1 and StorageAccountKey2"
+
+az keyvault delete-policy --name "$keyVaultName" --spn "$appId"
 
 az extension add --name databricks --yes --output none
 # Create ADB secret scope backed by Key Vault
