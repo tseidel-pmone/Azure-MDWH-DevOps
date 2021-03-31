@@ -56,4 +56,4 @@ echo "$createSecretScopePayload" | curl -sS -X POST -H "$authHeader" -H "$adbSPM
 echo "$createSecretScopePayload"
 az keyvault delete-policy --name "$keyVaultName" --spn "$appId"
 
-sleep 500s
+sleep 600s

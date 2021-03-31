@@ -202,6 +202,8 @@ The following steps can be performed to validate the correct deployment of this 
 
     [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fmodern-data-warehouse-dataops%2Fsingle-tech%2Fdatabricks_209-deploy-to-azure-batch%2Fsingle_tech_samples%2Fdatabricks%2Fsample1_basic_azure_databricks_environment%2FconfigTemplate%2FconfigTemplate.json)
 
+    [![Deploy to Azure](http://armviz.io/visualizebutton.png)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fmodern-data-warehouse-dataops%2Fsingle-tech%2Fdatabricks_209-deploy-to-azure-batch%2Fsingle_tech_samples%2Fdatabricks%2Fsample1_basic_azure_databricks_environment%2FconfigTemplate%2FconfigTemplate.json)
+
 ### 3.6. Clean-up
 
 Please follow the below steps to clean up your environment :
