@@ -38,7 +38,7 @@ adbWorkspaceUrl=$(az databricks workspace show --resource-group "$AZURE_RESOURCE
 
 echo "hello from $keyVaultId $keyVaultUri $adbId $adbWorkspaceUrl"
 
-sleep 60s
+exit 0
 # authHeader="Authorization: Bearer $adbGlobalToken"
 # adbSPMgmtToken="X-Databricks-Azure-SP-Management-Token:$azureApiToken"
 # adbResourceId="X-Databricks-Azure-Workspace-Resource-Id:$adbId"
