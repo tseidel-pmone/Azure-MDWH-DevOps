@@ -25,15 +25,17 @@ az keyvault secret set -n "StorageAccountKey1" --vault-name "$keyVaultName" --va
 az keyvault secret set -n "StorageAccountKey2" --vault-name "$keyVaultName" --value "$storageAccountKey2" --output none
 echo "Successfully stored secrets StorageAccountKey1 and StorageAccountKey2"
 
-# az extension add --name databricks --yes --output none
+az extension add --name databricks --yes --output none
 # # Create ADB secret scope backed by Key Vault
-# adbGlobalToken=$(az account get-access-token --resource 2ff814a6-3304-4ab8-85cb-cd0e6f879c1d --output json | jq -r .accessToken)
-# echo "Got adbGlobalToken=\"${adbGlobalToken:0:20}...${adbGlobalToken:(-20)}\""
-# azureApiToken=$(az account get-access-token --resource https://management.core.windows.net/ --output json | jq -r .accessToken)
-# echo "Got azureApiToken=\"${azureApiToken:0:20}...${azureApiToken:(-20)}\""
+adbGlobalToken=$(az account get-access-token --resource 2ff814a6-3304-4ab8-85cb-cd0e6f879c1d --output json | jq -r .accessToken)
+echo "Got adbGlobalToken=\"${adbGlobalToken:0:20}...${adbGlobalToken:(-20)}\""
+azureApiToken=$(az account get-access-token --resource https://management.core.windows.net/ --output json | jq -r .accessToken)
+echo "Got azureApiToken=\"${azureApiToken:0:20}...${azureApiToken:(-20)}\""
 
-# keyVaultId=$(az keyvault show --name "$keyVaultName" --query "id" --output tsv)
-# keyVaultUri=$(az keyvault show --name "$keyVaultName" --query "properties.vaultUri" --output tsv)
+keyVaultId=$(az keyvault show --name "$keyVaultName" --query "id" --output tsv)
+keyVaultUri=$(az keyvault show --name "$keyVaultName" --query "properties.vaultUri" --output tsv)
+
+echo $keyVaultId $keyVaultUri
 
 # adbId=$(az databricks workspace show --resource-group "$AZURE_RESOURCE_GROUP_NAME" --name "$adbWorkspaceName" --query id --output tsv)
 # adbWorkspaceUrl=$(az databricks workspace show --resource-group "$AZURE_RESOURCE_GROUP_NAME" --name "$adbWorkspaceName" --query workspaceUrl --output tsv)
