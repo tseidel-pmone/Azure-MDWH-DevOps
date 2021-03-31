@@ -17,14 +17,47 @@
     "scriptName": "createFileShare",
     "identityName": "scratch",
     "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
-    "roleDefinitionName": "[guid(variables('identityName'), variables('roleDefinitionId'))]"
+    "roleDefinitionName": "[guid(variables('identityName'), variables('roleDefinitionId'))]",
+    "adbWorkspaceName": "[concat(parameters('DEPLOYMENT_PREFIX'),'adb01')]"
   },
   "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-10-01",
+      "name": "linkedTemplateADBWorkspace",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://raw.githubusercontent.com/Azure-Samples/modern-data-warehouse-dataops/single-tech/databricks/single_tech_samples/databricks/sample1_basic_azure_databricks_environment/databricks/workspace.template.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "adbWorkspaceName": {
+            "value": "[variables('adbWorkspaceName')]"
+          },
+          "adbWorkspaceLocation": {
+            "value": "[parameters('location')]"
+          },
+          "adbWorkspaceSkuTier": {
+            "value": "premium"
+          },
+          "tagValues": {
+            "value": {}
+          },
+          "disablePublicIp": {
+            "value": false
+          }
+        }
+      }
+    },
     {
       "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
       "name": "[variables('identityName')]",
       "apiVersion": "2018-11-30",
-      "location": "[parameters('location')]"
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'linkedTemplateADBWorkspace')]"
+      ]
     },
     {
       "type": "Microsoft.Authorization/roleAssignments",
