@@ -34,26 +34,3 @@ keyVaultId=$(az keyvault show --name "$keyVaultName" --query "id" --output tsv)
 keyVaultUri=$(az keyvault show --name "$keyVaultName" --query "properties.vaultUri" --output tsv)
 
 echo "hello from $keyVaultId $keyVaultUri"
-
-# adbId=$(az databricks workspace show --resource-group "$AZURE_RESOURCE_GROUP_NAME" --name "$adbWorkspaceName" --query id --output tsv)
-# adbWorkspaceUrl=$(az databricks workspace show --resource-group "$AZURE_RESOURCE_GROUP_NAME" --name "$adbWorkspaceName" --query workspaceUrl --output tsv)
-
-# authHeader="Authorization: Bearer $adbGlobalToken"
-# adbSPMgmtToken="X-Databricks-Azure-SP-Management-Token:$azureApiToken"
-# adbResourceId="X-Databricks-Azure-Workspace-Resource-Id:$adbId"
-
-# createSecretScopePayload="{
-#   \"scope\": \"$scopeName\",
-#   \"scope_backend_type\": \"AZURE_KEYVAULT\",
-#   \"backend_azure_keyvault\":
-#   {
-#     \"resource_id\": \"$keyVaultId\",
-#     \"dns_name\": \"$keyVaultUri\"
-#   },
-#   \"initial_manage_principal\": \"users\"
-# }"
-# echo "$createSecretScopePayload" | curl -sS -X POST -H "$authHeader" -H "$adbSPMgmtToken" -H "$adbResourceId" \
-#     --data-binary "@-" "https://${adbWorkspaceUrl}/api/2.0/secrets/scopes/create"
-
-# echo "$createSecretScopePayload"
-# # az keyvault delete-policy --name "$keyVaultName" --spn "$appId"
