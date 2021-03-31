@@ -34,7 +34,8 @@
       }
     },
     "tagValues": {
-      "type": "object"
+      "type": "object",
+      "defaultValue": {}
     }
   },
   "variables": {

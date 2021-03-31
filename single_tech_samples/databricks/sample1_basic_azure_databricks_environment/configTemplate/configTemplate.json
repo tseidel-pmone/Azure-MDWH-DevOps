@@ -11,6 +11,16 @@
       "metadata": {
         "description": "Primary location for resources"
       }
+    },
+    "tagValues": {
+      "type": "object",
+      "defaultValue": {}
+    },
+    "keyVaultUserOID": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies. Get it by using Get-AzADUser or Get-AzADServicePrincipal cmdlets."
+      }
     }
   },
   "variables": {
@@ -18,7 +28,10 @@
     "identityName": "scratch",
     "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
     "roleDefinitionName": "[guid(variables('identityName'), variables('roleDefinitionId'))]",
-    "adbWorkspaceName": "[concat(parameters('DEPLOYMENT_PREFIX'),'adb01')]"
+    "adbWorkspaceName": "[concat(parameters('DEPLOYMENT_PREFIX'),'adb01')]",
+    "keyVaultName": "[concat(parameters('DEPLOYMENT_PREFIX'),'akv01')]",
+    "storageAccountName": "[concat(parameters('DEPLOYMENT_PREFIX'),'asa01')]"
+
   },
   "resources": [
     {
@@ -42,10 +55,74 @@
             "value": "premium"
           },
           "tagValues": {
-            "value": {}
+            "value": "[parameters('tagValues')]"
           },
           "disablePublicIp": {
             "value": false
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-10-01",
+      "name": "linkedTemplateKeyVault",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://raw.githubusercontent.com/Azure-Samples/modern-data-warehouse-dataops/single-tech/databricks_209-deploy-to-azure-batch/single_tech_samples/databricks/sample1_basic_azure_databricks_environment/keyvault/keyvault.template.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "keyVaultName": {
+            "value": "[variables('keyVaultName')]"
+          },
+          "keyVaultSkuTier": {
+            "value": "Standard"
+          },
+          "keyVaultLocation": {
+            "value": "[parameters('location')]"
+          },
+          "enabledForDeployment": {
+            "value": false
+          },
+          "enabledForTemplateDeployment": {
+            "value": false
+          },
+          "objectId": {
+            "value": "[parameters('keyVaultUserOID')]"
+          },
+          "tagValues": {
+            "value": "[parameters('tagValues')]"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-10-01",
+      "name": "linkedTemplateStorageAccount",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://raw.githubusercontent.com/Azure-Samples/modern-data-warehouse-dataops/single-tech/databricks_209-deploy-to-azure-batch/single_tech_samples/databricks/sample1_basic_azure_databricks_environment/storageaccount/storageaccount.template.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "storageAccountName": {
+            "value": "[variables('storageAccountName')]"
+          },
+          "storageAccountSku": {
+            "value": "Standard_LRS"
+          },
+          "storageAccountSkuTier": {
+            "value": "Standard"
+          },
+          "storageAccountLocation": {
+            "value": "[parameters('location')]"
+          },
+          "encryptionEnabled": {
+            "value": true
           }
         }
       }
@@ -56,7 +133,9 @@
       "apiVersion": "2018-11-30",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Resources/deployments', 'linkedTemplateADBWorkspace')]"
+        "[resourceId('Microsoft.Resources/deployments', 'linkedTemplateADBWorkspace')]",
+        "[resourceId('Microsoft.Resources/deployments', 'linkedTemplateKeyVault')]",
+        "[resourceId('Microsoft.Resources/deployments', 'linkedTemplateStorageAccount')]"
       ]
     },
     {
@@ -94,7 +173,7 @@
         "forceUpdateTag": "2",
         "timeout": "PT30M",
         "primaryScriptUri": "https://raw.githubusercontent.com/Azure-Samples/modern-data-warehouse-dataops/single-tech/databricks_209-deploy-to-azure-batch/single_tech_samples/databricks/sample1_basic_azure_databricks_environment/configTemplate/configScript.sh",
-        "cleanupPreference": "OnSuccess",
+        "cleanupPreference": "OnExpiration", //update to 
         "retentionInterval": "PT1H",
         "environmentVariables": [
           {

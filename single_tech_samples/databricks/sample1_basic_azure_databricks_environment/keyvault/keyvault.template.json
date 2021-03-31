@@ -62,7 +62,8 @@
       }
     },
     "tagValues": {
-      "type": "object"
+      "type": "object",
+      "defaultValue": {}
     }
   },
   "resources": [
