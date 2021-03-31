@@ -151,7 +151,7 @@
       "properties": {
         "roleDefinitionId": "[variables('roleDefinitionId')]",
         "principalId": "[reference(variables('identityName')).principalId]",
-        "scope": "[subscription().id]",
+        "scope": "/",
         "principalType": "ServicePrincipal"
       }
     },
