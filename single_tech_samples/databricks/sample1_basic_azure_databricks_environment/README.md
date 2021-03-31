@@ -198,19 +198,7 @@ The following steps can be performed to validate the correct deployment of this 
 
 ### 3.5. (optional) Deploy to Azure Directly
 
-1. Databricks Workspaces
-  
-    [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fmodern-data-warehouse-dataops%2Fsingle-tech%2Fdatabricks%2Fsingle_tech_samples%2Fdatabricks%2Fsample1_basic_azure_databricks_environment%2Fdatabricks%2Fworkspace.template.json)
-
-1. Key Vault
-
-    [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fmodern-data-warehouse-dataops%2Fsingle-tech%2Fdatabricks%2Fsingle_tech_samples%2Fdatabricks%2Fsample1_basic_azure_databricks_environment%2Fkeyvault%2Fkeyvault.template.json)
-
-1. Storage Account
-
-    [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fmodern-data-warehouse-dataops%2Fsingle-tech%2Fdatabricks%2Fsingle_tech_samples%2Fdatabricks%2Fsample1_basic_azure_databricks_environment%2Fstorageaccount%2Fstorageaccount.template.json)
-
-1. Config Script
+1. Sample 1
 
     [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fmodern-data-warehouse-dataops%2Fsingle-tech%2Fdatabricks_209-deploy-to-azure-batch%2Fsingle_tech_samples%2Fdatabricks%2Fsample1_basic_azure_databricks_environment%2FconfigTemplate%2FconfigTemplate.json)
 
