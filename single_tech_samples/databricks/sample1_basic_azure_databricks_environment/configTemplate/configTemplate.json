@@ -30,7 +30,8 @@
     "roleDefinitionName": "[guid(variables('identityName'), variables('roleDefinitionId'))]",
     "adbWorkspaceName": "[concat(parameters('DEPLOYMENT_PREFIX'),'adb01')]",
     "keyVaultName": "[concat(parameters('DEPLOYMENT_PREFIX'),'akv01')]",
-    "storageAccountName": "[concat(parameters('DEPLOYMENT_PREFIX'),'asa01')]"
+    "storageAccountName": "[concat(parameters('DEPLOYMENT_PREFIX'),'asa01')]",
+    "utcNow": "[utcNow()]"
 
   },
   "resources": [
@@ -170,7 +171,7 @@
       },
       "properties": {
         "azCliVersion": "2.20.0",
-        "forceUpdateTag": "[utcNow()]",
+        "forceUpdateTag": "[variables('utcNow')]",
         "timeout": "PT30M",
         "primaryScriptUri": "https://raw.githubusercontent.com/Azure-Samples/modern-data-warehouse-dataops/single-tech/databricks_209-deploy-to-azure-batch/single_tech_samples/databricks/sample1_basic_azure_databricks_environment/configTemplate/configScript.sh",
         "cleanupPreference": "OnSuccess", //update to 
