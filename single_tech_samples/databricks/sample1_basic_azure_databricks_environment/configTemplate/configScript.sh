@@ -52,9 +52,8 @@ createSecretScopePayload="{
   },
   \"initial_manage_principal\": \"users\"
 }"
-response=$(echo "$createSecretScopePayload" | curl -sS -X POST -H "$authHeader" -H "$adbSPMgmtToken" -H "$adbResourceId" \
-    --data-binary "@-" "https://${adbWorkspaceUrl}/api/2.0/secrets/scopes/create")
+echo "$createSecretScopePayload" | curl -sS -X POST -H "$authHeader" -H "$adbSPMgmtToken" -H "$adbResourceId" \
+    --data-binary "@-" "https://${adbWorkspaceUrl}/api/2.0/secrets/scopes/create"
 
-echo "$response"
 echo "$createSecretScopePayload"
 # az keyvault delete-policy --name "$keyVaultName" --spn "$appId"
