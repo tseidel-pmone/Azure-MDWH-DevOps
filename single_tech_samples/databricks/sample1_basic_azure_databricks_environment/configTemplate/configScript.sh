@@ -38,6 +38,8 @@ keyVaultUri=$(az keyvault show --name "$keyVaultName" --query "properties.vaultU
 
 echo "hello from $keyVaultId $keyVaultUri $adbId $adbWorkspaceUrl"
 
+sleep 300s
+
 # authHeader="Authorization: Bearer $adbGlobalToken"
 # adbSPMgmtToken="X-Databricks-Azure-SP-Management-Token:$azureApiToken"
 # adbResourceId="X-Databricks-Azure-Workspace-Resource-Id:$adbId"
