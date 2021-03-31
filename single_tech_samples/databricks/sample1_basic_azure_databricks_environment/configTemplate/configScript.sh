@@ -33,4 +33,7 @@ echo "Got azureApiToken=\"${azureApiToken:0:20}...${azureApiToken:(-20)}\""
 keyVaultId=$(az keyvault show --name "$keyVaultName" --query "id" --output tsv)
 keyVaultUri=$(az keyvault show --name "$keyVaultName" --query "properties.vaultUri" --output tsv)
 
-echo "hello from $keyVaultId $keyVaultUri"
+adbId=$(az databricks workspace show --resource-group "$AZURE_RESOURCE_GROUP_NAME" --name "$adbWorkspaceName" --query id --output tsv)
+adbWorkspaceUrl=$(az databricks workspace show --resource-group "$AZURE_RESOURCE_GROUP_NAME" --name "$adbWorkspaceName" --query workspaceUrl --output tsv)
+
+echo "hello from $keyVaultId $keyVaultUri $adbId $adbWorkspaceUrl"
