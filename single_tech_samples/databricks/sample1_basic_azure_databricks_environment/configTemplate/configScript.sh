@@ -23,7 +23,7 @@ az keyvault secret set -n "StorageAccountKey1" --vault-name "$keyVaultName" --va
 az keyvault secret set -n "StorageAccountKey2" --vault-name "$keyVaultName" --value "$storageAccountKey2" --output none
 echo "Successfully stored secrets StorageAccountKey1 and StorageAccountKey2"
 
-echo $(time)
+echo $(date)
 
 # az extension add --name databricks --yes --output none
 # # # Create ADB secret scope backed by Key Vault
