@@ -55,5 +55,3 @@ echo "Successfully stored secrets StorageAccountKey1 and StorageAccountKey2"
 
 # echo "$createSecretScopePayload"
 # az keyvault delete-policy --name "$keyVaultName" --spn "$appId"
-
-sleep 600
