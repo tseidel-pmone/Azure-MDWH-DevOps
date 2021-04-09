@@ -7,8 +7,8 @@ DEPLOY_PRINCIPAL_ID=${DEPLOY_PRINCIPAL_ID:-}
 # Variables
 keyVaultName="${DEPLOYMENT_PREFIX}akv01"
 storageAccountName="${DEPLOYMENT_PREFIX}asa01"
-# adbWorkspaceName="${DEPLOYMENT_PREFIX}adb01"
-# scopeName="storage_scope"
+adbWorkspaceName="${DEPLOYMENT_PREFIX}adb01"
+scopeName="storage_scope"
 #
 echo "Retrieving keys from storage account"
 storageKeys=$(az storage account keys list --resource-group "$AZURE_RESOURCE_GROUP_NAME" --account-name "$storageAccountName")
