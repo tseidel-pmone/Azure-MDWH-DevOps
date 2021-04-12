@@ -12,7 +12,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     npm \
     python3 \
     python3-pip \
-    xz-utils
+    xz-utils \
+    shellcheck
 
 # Install shfmt
 RUN curl -SsL "https://github.com/mvdan/sh/releases/download/v3.2.4/shfmt_v3.2.4_linux_amd64" -o "shfmt" \

@@ -28,7 +28,7 @@
     }
   },
   "variables": {
-    "scriptName": "createFileShare",
+    "scriptName": "configureADB",
     "identityName": "scratch",
     "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
     "roleDefinitionName": "[guid(variables('identityName'), variables('roleDefinitionId'))]",
@@ -176,7 +176,7 @@
         "forceUpdateTag": "[parameters('utcValue')]",
         "timeout": "PT30M",
         "primaryScriptUri": "https://raw.githubusercontent.com/Azure-Samples/modern-data-warehouse-dataops/single-tech/databricks_209-deploy-to-azure-batch/single_tech_samples/databricks/sample1_basic_azure_databricks_environment/configTemplate/configScript.sh",
-        "cleanupPreference": "OnSuccess", //update to 
+        "cleanupPreference": "OnExpiration", //update to 
         "retentionInterval": "PT1H",
         "environmentVariables": [
           {
