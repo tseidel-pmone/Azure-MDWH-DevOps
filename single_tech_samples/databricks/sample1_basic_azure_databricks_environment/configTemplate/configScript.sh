@@ -57,3 +57,5 @@ echo "$createSecretScopePayload"
 az keyvault delete-policy --name "$keyVaultName" --spn "$appId"
 
 echo $(date)
+
+sleep 300
